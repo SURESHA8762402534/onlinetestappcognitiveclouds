@@ -76,7 +76,7 @@ export default function Drawer() {
         setOpen(false);
     };
 
-    const newstate = useSelector<initialValue, initialValue['ans1']>(state => state.ans1)
+    const newstate = useSelector<initialValue>(state => state.ans1)
 
     return (
         <Box sx={{ display: 'flex' }}>
@@ -128,7 +128,8 @@ export default function Drawer() {
                                 px: 2.5,
                             }}
                         >
-                            <Radio onClick={()=>{navigate('/que2')}} checked style={{backgroundColor:'gray', marginRight:'10px'}} />
+                            <Radio onClick={()=>{navigate('/que2')}} checked 
+                            style={{backgroundColor:'gray', marginRight:'10px'}} />
                             <ListItemText primary='Q2' sx={{ opacity: open ? 1 : 0 }} />
                         </ListItemButton>
                         <ListItemButton

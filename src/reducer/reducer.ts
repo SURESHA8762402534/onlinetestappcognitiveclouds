@@ -48,7 +48,7 @@ const reducer = (state: initialValue = InitialValue, action: action) => {
     switch (action.type) {
         case 'SET_DRAWER':
             newState.drawer = true;
-            // console.log(newState.drawer)
+            console.log(newState.drawer)
             break;
         case 'SCORE':
             newState.score += 1

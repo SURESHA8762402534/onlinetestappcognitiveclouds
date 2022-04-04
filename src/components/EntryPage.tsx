@@ -4,12 +4,13 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import StarIcon from '@mui/icons-material/Star';
 import { useDispatch } from 'react-redux';
+import { Dispatch } from 'react';
 
 
 const EntryPage = () => {
   const [language, setLanguage] = React.useState('');
   const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const dispatch: Dispatch<any> = useDispatch()
 
   const handleChange = (event: SelectChangeEvent) => {
     setLanguage(event.target.value);
