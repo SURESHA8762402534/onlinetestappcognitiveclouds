@@ -1,10 +1,5 @@
 export interface initialValue {
     drawer: boolean,
-    ans1:string,
-    ans2:string,
-    ans3:string,
-    ans4:string,
-    ans5:string,
     score:number
 }
 
@@ -19,11 +14,6 @@ type action = draweraction | scoreaction
 
 const InitialValue = {
     drawer: false,
-    ans1:'',
-    ans2:'',
-    ans3:'',
-    ans4:'',
-    ans5:'',
     score:0
 }
 

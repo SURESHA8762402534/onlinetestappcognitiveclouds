@@ -1,7 +1,7 @@
 import React from 'react';
 import {
     Avatar, Button, CssBaseline, TextField, FormControlLabel,
-    Checkbox, Link, Grid, Box, Typography, Container, createTheme, ThemeProvider,Radio, RadioGroup, Divider
+    Checkbox, Link, Grid, Box, Typography, Container, createTheme, ThemeProvider,Radio, RadioGroup, 
 } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { Link as To, useNavigate } from 'react-router-dom'
