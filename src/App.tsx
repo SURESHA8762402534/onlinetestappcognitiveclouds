@@ -20,7 +20,9 @@ import {initialValue} from './reducer/reducer'
 
 function App() {
   const state = useSelector<initialValue, initialValue['drawer']>((state)=>state.drawer)
+
   useEffect(()=>console.log(state),[state])
+
   
   return (
     <>

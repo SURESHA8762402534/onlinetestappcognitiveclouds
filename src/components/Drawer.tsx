@@ -6,6 +6,8 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { initialValue } from '../reducer/reducer';
 
 
 const openedMixin = (theme: Theme): CSSObject => ({
@@ -74,6 +76,8 @@ export default function Drawer() {
         setOpen(false);
     };
 
+    const newstate = useSelector<initialValue, initialValue['ans1']>(state => state.ans1)
+
     return (
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />
@@ -113,7 +117,8 @@ export default function Drawer() {
                                 px: 2.5,
                             }}
                         >
-                            <Radio onClick={()=>{navigate('/que1')}} checked style={{backgroundColor:'gray', marginRight:'10px'}} />
+                            <Radio onClick={()=>{navigate('/que1')}} checked
+                             style={newstate ? {backgroundColor:'red', marginRight:'10px'} : {backgroundColor:'gray', marginRight:'10px'}} />
                             <ListItemText primary='Q1' sx={{ opacity: open ? 1 : 0 }} />
                         </ListItemButton>
                         <ListItemButton

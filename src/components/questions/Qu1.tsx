@@ -34,6 +34,7 @@ export default function Qu1() {
 
     const handleAnswerOptionClick = (e: any) => {
         setCurrentQuestion(e.target.value)
+        dispatch({type:'ANS1'})
         
     };
 
