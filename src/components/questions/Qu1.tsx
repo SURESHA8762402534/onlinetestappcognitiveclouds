@@ -47,9 +47,7 @@ export default function Qu1() {
 
     const goto = () => {
         navigate('/que2')
-        if(currentQuestion === 'is an open-source JavaScript library that is used for building user interfaces specifically for single-page applications.'){
-            dispatch({type:'SCORE'})
-        }
+        
     }
 
     const backto = () => {
