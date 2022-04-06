@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 
+
 const Qu2 = () => {
   const questions = [
 
@@ -23,17 +24,22 @@ const Qu2 = () => {
   const [currentQuestion, setCurrentQuestion] = useState('');
   const navigate = useNavigate();
   const dispatch =useDispatch()
+  const [flag, setflag] = useState<boolean>(false)
 
   const handleAnswerOptionClick = (e: any) => {
     setCurrentQuestion(e.target.value)
     dispatch({type:'ANS5'})
   };
 
-  const goto = () => {
-    navigate('/result')
+  const save = () => {
     if(currentQuestion === 'It allows us to write HTML inside JavaScript '){
       dispatch({type:'SCORE'})
     }
+    setflag(true)
+  }
+
+  const goto = () => {
+    navigate('/result')
     dispatch({type:'SET_DRAWER'})
   }
 
@@ -81,8 +87,8 @@ const Qu2 = () => {
 
       <Grid container sx={{ m: 8 }}>
         <Grid item xs={2}><Button><ArrowBackIcon onClick={backto} /></Button>  </Grid>
-        <Grid item xs={8}></Grid>
-        <Grid item xs={2}><Button variant='outlined' onClick={goto} >Submit</Button></Grid>
+        <Grid item xs={7}></Grid>
+        <Grid item xs={2}><Button disabled={flag} variant='outlined' onClick={save} style={{backgroundColor:'grey',marginRight:20, color:'blue'}}>Save</Button><Button variant='outlined' onClick={goto} >Submit</Button></Grid>
       </Grid>
     </Grid>
     

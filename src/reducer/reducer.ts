@@ -43,12 +43,12 @@ const InitialValue = {
 }
 
 const reducer = (state: initialValue = InitialValue, action: action) => {
-    const newState = state;
+    const newState = {...state};
 
     switch (action.type) {
         case 'SET_DRAWER':
-            newState.drawer = true;
-            console.log(newState.drawer)
+            newState.drawer = !newState.drawer;
+            // console.log(newState.drawer)
             break;
         case 'SCORE':
             newState.score += 1
@@ -56,7 +56,7 @@ const reducer = (state: initialValue = InitialValue, action: action) => {
             break;
         case 'ANS1':
             newState.ans1 = true
-            console.log(newState.ans1)
+            // console.log(newState.ans1)
             break;
 
         case 'ANS2':

@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import { Grid, Typography,  Radio, RadioGroup, FormControlLabel } from '@mui/material';
+import { Grid, Typography,  Radio, RadioGroup, FormControlLabel,Button } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+
 
 
 const Qu2 = () => {
@@ -23,18 +24,23 @@ const Qu2 = () => {
 
   const [currentQuestion, setCurrentQuestion] = useState('');
   const navigate = useNavigate();
-  const dispatch =useDispatch()
+  const dispatch =useDispatch();
+  const [flag, setflag] = useState<boolean>(false)
 
   const handleAnswerOptionClick = (e: any) => {
     setCurrentQuestion(e.target.value)
     dispatch({type:'ANS4'})
   };
 
-  const goto = () => {
-    navigate('/que5')
+  const save = () => {
     if(currentQuestion === 'NO'){
       dispatch({type:'SCORE'})
     }
+    setflag(true)
+  }
+  const goto = () => {
+    navigate('/que5')
+    
   }
 
   const backto = () => {
@@ -83,8 +89,8 @@ const Qu2 = () => {
 
       <Grid container sx={{ m: 8 }}>
         <Grid item xs={2}><ArrowBackIcon onClick={backto} />  </Grid>
-        <Grid item xs={8}></Grid>
-        <Grid item xs={2}><ArrowForwardIcon onClick={goto} /></Grid>
+        <Grid item xs={7}></Grid>
+        <Grid item xs={2}><Button disabled={flag} variant='outlined' onClick={save} style={{backgroundColor:'grey',marginRight:20, color:'blue'}}>Save</Button><ArrowForwardIcon onClick={goto} /></Grid>
       </Grid>
       </Grid>
     

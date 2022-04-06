@@ -82,6 +82,15 @@ const EntryPage = () => {
           </ListItemButton>
         </ListItem>
 
+        <ListItem disablePadding>
+          <ListItemButton>
+            <ListItemIcon>
+              <StarIcon />
+            </ListItemIcon>
+            <Typography>Make sure that you save the current answer before moving to next question.</Typography>
+          </ListItemButton>
+        </ListItem>
+
       </List>
 
       <Box sx={{ mt: 15, ml: 80 }}>

@@ -31,19 +31,25 @@ export default function Qu1() {
     const [currentQuestion, setCurrentQuestion] = useState('');
     const navigate = useNavigate()
     const dispatch = useDispatch()
+    const [flag, setflag] = useState<boolean>(false)
 
     const handleAnswerOptionClick = (e: any) => {
         setCurrentQuestion(e.target.value)
         dispatch({type:'ANS1'})
         
     };
+    const save = (e:any) => {
+        if(currentQuestion === 'is an open-source JavaScript library that is used for building user interfaces specifically for single-page applications.'){
+            dispatch({type:'SCORE'})
+        }
+        setflag(true)
+    }
 
     const goto = () => {
         navigate('/que2')
         if(currentQuestion === 'is an open-source JavaScript library that is used for building user interfaces specifically for single-page applications.'){
             dispatch({type:'SCORE'})
         }
-        
     }
 
     const backto = () => {
@@ -100,8 +106,8 @@ export default function Qu1() {
                 
             <Grid container sx={{ m: 8 }}>
                 <Grid item xs={2}><Button disabled><ArrowBackIcon onClick={backto} /></Button>  </Grid>
-                <Grid item xs={8}></Grid>
-                <Grid item xs={2}><ArrowForwardIcon onClick={goto} /></Grid>
+                <Grid item xs={7}></Grid>
+                <Grid item xs={2}><Button disabled={flag} variant='outlined' onClick={save} style={{backgroundColor:'grey',marginRight:20, color:'blue'}}>Save</Button> <ArrowForwardIcon onClick={goto} /></Grid>
             </Grid>
         </Grid>
      
