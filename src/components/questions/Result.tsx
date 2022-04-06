@@ -24,9 +24,10 @@ const Result = () => {
           { title: 'your score', value: score , color: 'green', totalValue: 5 }
 
         ]}
-        radius={30}
+        radius={40}
    
       />;
+       
       </h1>
       
 
