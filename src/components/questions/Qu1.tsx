@@ -38,10 +38,11 @@ export default function Qu1() {
         dispatch({type:'ANS1'})
         
     };
-    const save = (e:any) => {
+    const save = () => {
         if(currentQuestion === 'is an open-source JavaScript library that is used for building user interfaces specifically for single-page applications.'){
             dispatch({type:'SCORE'})
         }
+        dispatch({type:'ANSWER',payload:currentQuestion})
         setflag(true)
     }
 

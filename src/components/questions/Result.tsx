@@ -15,7 +15,7 @@ const Result = () => {
     console.log(scores)}, [scores])
   return (
     <>
-      <h1>Your score is {score}/5
+      <h1 >Your score is {score}/5
       <PieChart
         data={[
           { title: 'total',
@@ -24,7 +24,7 @@ const Result = () => {
           { title: 'your score', value: score , color: 'green', totalValue: 5 }
 
         ]}
-        radius={40}
+        radius={50}
    
       />;
        

@@ -35,6 +35,7 @@ const Qu2 = () => {
     if(currentQuestion === 'It allows us to write HTML inside JavaScript '){
       dispatch({type:'SCORE'})
     }
+    dispatch({type:'ANSWER',payload:currentQuestion})
     setflag(true)
   }
 

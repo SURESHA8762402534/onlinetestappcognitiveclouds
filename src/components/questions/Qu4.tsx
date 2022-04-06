@@ -36,6 +36,7 @@ const Qu2 = () => {
     if(currentQuestion === 'NO'){
       dispatch({type:'SCORE'})
     }
+    dispatch({type:'ANSWER',payload:currentQuestion})
     setflag(true)
   }
   const goto = () => {

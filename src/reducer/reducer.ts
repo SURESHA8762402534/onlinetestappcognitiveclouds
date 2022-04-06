@@ -5,7 +5,8 @@ export interface initialValue {
     ans3: boolean,
     ans4: boolean,
     ans5: boolean,
-    score: number
+    score: number,
+    
 }
 
 interface draweraction {
@@ -29,8 +30,11 @@ interface ans4 {
 interface ans5 {
     type: 'ANS5'
 }
-
-type action = draweraction | scoreaction | ans1 | ans2 | ans3 | ans4 | ans5
+interface answers {
+    type:'ANSWER',
+    paload:['']
+}
+type action = draweraction | scoreaction | ans1 | ans2 | ans3 | ans4 | ans5 |answers
 
 const InitialValue = {
     drawer: false,
@@ -39,7 +43,8 @@ const InitialValue = {
     ans3: false,
     ans4: false,
     ans5: false,
-    score: 0
+    score: 0,
+    
 }
 
 const reducer = (state: initialValue = InitialValue, action: action) => {
