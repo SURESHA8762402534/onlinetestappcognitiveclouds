@@ -26,6 +26,7 @@ const Qu2 = () => {
 
   const handleAnswerOptionClick = (e: any) => {
     setCurrentQuestion(e.target.value)
+    dispatch({type:'ANS5'})
   };
 
   const goto = () => {
@@ -33,9 +34,11 @@ const Qu2 = () => {
     if(currentQuestion === 'It allows us to write HTML inside JavaScript '){
       dispatch({type:'SCORE'})
     }
+    dispatch({type:'SET_DRAWER'})
   }
 
   const backto = () => {
+    
    navigate('/que4')
   }
   return (
@@ -76,11 +79,8 @@ const Qu2 = () => {
 
       </Grid>
 
-
-
-
       <Grid container sx={{ m: 8 }}>
-        <Grid item xs={2}><ArrowBackIcon onClick={backto} />  </Grid>
+        <Grid item xs={2}><Button><ArrowBackIcon onClick={backto} /></Button>  </Grid>
         <Grid item xs={8}></Grid>
         <Grid item xs={2}><Button variant='outlined' onClick={goto} >Submit</Button></Grid>
       </Grid>

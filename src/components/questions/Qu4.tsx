@@ -27,7 +27,7 @@ const Qu2 = () => {
 
   const handleAnswerOptionClick = (e: any) => {
     setCurrentQuestion(e.target.value)
-
+    dispatch({type:'ANS4'})
   };
 
   const goto = () => {

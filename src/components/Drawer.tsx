@@ -76,7 +76,11 @@ export default function Drawer() {
         setOpen(false);
     };
 
-    const newstate = useSelector<initialValue>(state => state.ans1)
+    const newstate1 = useSelector<initialValue>(state => state.ans1);
+    const newstate2 = useSelector<initialValue>(state => state.ans2)
+    const newstate3 = useSelector<initialValue>(state => state.ans3)
+    const newstate4 = useSelector<initialValue>(state => state.ans4)
+    const newstate5 = useSelector<initialValue>(state => state.ans5)
 
     return (
         <Box sx={{ display: 'flex' }}>
@@ -98,9 +102,7 @@ export default function Drawer() {
                                 edge="start"
                                 sx={{
                                     marginRight: 1,
-                                }}
-                                
-                                
+                                }} 
                             >
                                 <MenuIcon />
                             </IconButton>
@@ -118,7 +120,7 @@ export default function Drawer() {
                             }}
                         >
                             <Radio onClick={()=>{navigate('/que1')}} checked
-                             style={newstate ? {backgroundColor:'red', marginRight:'10px'} : {backgroundColor:'gray', marginRight:'10px'}} />
+                             style={newstate1 ? {backgroundColor:'red', marginRight:'10px'} : {backgroundColor:'gray', marginRight:'10px'}} />
                             <ListItemText primary='Q1' sx={{ opacity: open ? 1 : 0 }} />
                         </ListItemButton>
                         <ListItemButton
@@ -129,7 +131,7 @@ export default function Drawer() {
                             }}
                         >
                             <Radio onClick={()=>{navigate('/que2')}} checked 
-                            style={{backgroundColor:'gray', marginRight:'10px'}} />
+                             style={newstate2 ? {backgroundColor:'red', marginRight:'10px'} : {backgroundColor:'gray', marginRight:'10px'}} />
                             <ListItemText primary='Q2' sx={{ opacity: open ? 1 : 0 }} />
                         </ListItemButton>
                         <ListItemButton
@@ -139,7 +141,8 @@ export default function Drawer() {
                                 px: 2.5,
                             }}
                         >
-                            <Radio onClick={()=>{navigate('/que3')}} checked style={{backgroundColor:'gray', marginRight:'10px'}} />
+                            <Radio onClick={()=>{navigate('/que3')}} checked 
+                             style={newstate3 ? {backgroundColor:'red', marginRight:'10px'} : {backgroundColor:'gray', marginRight:'10px'}} />
                             <ListItemText primary='Q3' sx={{ opacity: open ? 1 : 0 }} />
                         </ListItemButton>
                         <ListItemButton
@@ -149,7 +152,8 @@ export default function Drawer() {
                                 px: 2.5,
                             }}
                         >
-                            <Radio onClick={()=>{navigate('/que4')}} checked style={{backgroundColor:'gray', marginRight:'10px'}} />
+                            <Radio onClick={()=>{navigate('/que4')}} checked
+                             style={newstate4 ? {backgroundColor:'red', marginRight:'10px'} : {backgroundColor:'gray', marginRight:'10px'}} />
                             <ListItemText primary='Q4' sx={{ opacity: open ? 1 : 0 }} />
                         </ListItemButton>
                         <ListItemButton
@@ -159,7 +163,8 @@ export default function Drawer() {
                                 px: 2.5,
                             }}
                         >
-                            <Radio onClick={()=>{navigate('/que5')}} checked style={{backgroundColor:'gray', marginRight:'10px'}} />
+                            <Radio onClick={()=>{navigate('/que5')}} checked 
+                             style={newstate5 ? {backgroundColor:'red', marginRight:'10px'} : {backgroundColor:'gray', marginRight:'10px'}} />
                             <ListItemText primary='Q5' sx={{ opacity: open ? 1 : 0 }} />
                         </ListItemButton>
                    

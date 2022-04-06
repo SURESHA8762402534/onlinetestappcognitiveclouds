@@ -26,7 +26,7 @@ const Qu2 = () => {
   const dispatch = useDispatch()
 
   const handleAnswerOptionClick = (e: any) => {
-
+    dispatch({type:'ANS2'})
     setCurrentQuestion(e.target.value)
   };
 

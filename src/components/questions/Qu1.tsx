@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Grid,  Typography,  Radio, RadioGroup, FormControlLabel } from '@mui/material';
+import { Grid,  Typography,  Radio, RadioGroup, FormControlLabel, Button } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { useNavigate } from 'react-router-dom';
@@ -99,7 +99,7 @@ export default function Qu1() {
 
                 
             <Grid container sx={{ m: 8 }}>
-                <Grid item xs={2}><ArrowBackIcon onClick={backto} />  </Grid>
+                <Grid item xs={2}><Button disabled><ArrowBackIcon onClick={backto} /></Button>  </Grid>
                 <Grid item xs={8}></Grid>
                 <Grid item xs={2}><ArrowForwardIcon onClick={goto} /></Grid>
             </Grid>

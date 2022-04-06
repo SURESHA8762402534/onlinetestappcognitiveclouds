@@ -55,21 +55,21 @@ const reducer = (state: initialValue = InitialValue, action: action) => {
             // console.log(newState.score)
             break;
         case 'ANS1':
-            newState.ans1 = !newState.ans1
+            newState.ans1 = true
             console.log(newState.ans1)
             break;
 
         case 'ANS2':
-            newState.ans2 = !newState.ans2
+            newState.ans2 = true
             break;
         case 'ANS3':
-            newState.ans3 = !newState.ans3
+            newState.ans3 = true
             break;
         case 'ANS4':
-            newState.ans4 = !newState.ans4
+            newState.ans4 = true
             break;
         case 'ANS5':
-            newState.ans5 = !newState.ans5
+            newState.ans5 =true
             break;
         default:
             break;
