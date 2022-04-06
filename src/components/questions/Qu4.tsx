@@ -35,8 +35,11 @@ const Qu2 = () => {
   const save = () => {
     if(currentQuestion === 'NO'){
       dispatch({type:'SCORE'})
+      dispatch({type:'RIGHTANSWER', payload:currentQuestion})
     }
-    dispatch({type:'ANSWER',payload:currentQuestion})
+    else {
+        dispatch({type:'WRONGANSWER',payload:currentQuestion})
+    }
     setflag(true)
   }
   const goto = () => {

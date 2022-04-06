@@ -41,8 +41,11 @@ export default function Qu1() {
     const save = () => {
         if(currentQuestion === 'is an open-source JavaScript library that is used for building user interfaces specifically for single-page applications.'){
             dispatch({type:'SCORE'})
+            dispatch({type:'RIGHTANSWER', payload:currentQuestion})
         }
-        dispatch({type:'ANSWER',payload:currentQuestion})
+        else {
+            dispatch({type:'WRONGANSWER',payload:currentQuestion})
+        }
         setflag(true)
     }
 

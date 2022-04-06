@@ -6,6 +6,8 @@ export interface initialValue {
     ans4: boolean,
     ans5: boolean,
     score: number,
+    rightans: string[],
+    wrongans: string[]
     
 }
 
@@ -30,11 +32,15 @@ interface ans4 {
 interface ans5 {
     type: 'ANS5'
 }
-interface answers {
-    type:'ANSWER',
-    paload:['']
+interface wronganswers {
+    type:'WRONGANSWER',
+    payload:string
 }
-type action = draweraction | scoreaction | ans1 | ans2 | ans3 | ans4 | ans5 |answers
+interface rightanswers {
+    type:'RIGHTANSWER',
+    payload:string
+}
+type action = draweraction | scoreaction | ans1 | ans2 | ans3 | ans4 | ans5 |wronganswers | rightanswers
 
 const InitialValue = {
     drawer: false,
@@ -44,7 +50,8 @@ const InitialValue = {
     ans4: false,
     ans5: false,
     score: 0,
-    
+    rightans:[],
+    wrongans:[]
 }
 
 const reducer = (state: initialValue = InitialValue, action: action) => {
@@ -75,6 +82,12 @@ const reducer = (state: initialValue = InitialValue, action: action) => {
             break;
         case 'ANS5':
             newState.ans5 =true
+            break;
+        case 'RIGHTANSWER':
+             newState.rightans = [...newState.rightans, action.payload]
+             break;
+        case 'WRONGANSWER':
+            newState.wrongans = [...newState.wrongans, action.payload]
             break;
         default:
             break;
