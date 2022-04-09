@@ -17,6 +17,34 @@ import Qu4 from './components/questions/Qu4';
 import Qu5 from './components/questions/Qu5';
 import Result from './components/questions/Result';
 
+it('snapshot for app file', ()=>{
+  const component = render(
+    <BrowserRouter>
+    <Nav/>
+    </BrowserRouter>
+  )
+  expect(component).toMatchSnapshot()
+})
+
+
+it('snapshot for app file', ()=>{
+  const component = render(
+    <BrowserRouter>
+    <LoginPage/>
+    </BrowserRouter>
+  )
+  expect(component).toMatchSnapshot()
+})
+
+it('snapshot for app file', ()=>{
+  const component = render(
+    <BrowserRouter>
+    <SignUp/>
+    </BrowserRouter>
+  )
+  expect(component).toMatchSnapshot()
+})
+
 
 describe('test for Navigation bar', () => {
   it('test for login and sign up buttons', () => {

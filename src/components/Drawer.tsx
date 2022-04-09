@@ -120,7 +120,7 @@ export default function Drawer() {
                             }}
                         >
                             <Radio onClick={()=>{navigate('/que1')}} checked
-                             style={newstate1 ? {backgroundColor:'red', marginRight:'10px'} : {backgroundColor:'gray', marginRight:'10px'}} />
+                             style={newstate1 ? {backgroundColor:'lightgreen', marginRight:'10px'} : {backgroundColor:'gray', marginRight:'10px'}} />
                             <ListItemText primary='Q1' sx={{ opacity: open ? 1 : 0 }} />
                         </ListItemButton>
                         <ListItemButton
@@ -131,7 +131,7 @@ export default function Drawer() {
                             }}
                         >
                             <Radio onClick={()=>{navigate('/que2')}} checked 
-                             style={newstate2 ? {backgroundColor:'red', marginRight:'10px'} : {backgroundColor:'gray', marginRight:'10px'}} />
+                             style={newstate2 ? {backgroundColor:'lightgreen', marginRight:'10px'} : {backgroundColor:'gray', marginRight:'10px'}} />
                             <ListItemText primary='Q2' sx={{ opacity: open ? 1 : 0 }} />
                         </ListItemButton>
                         <ListItemButton
@@ -142,7 +142,7 @@ export default function Drawer() {
                             }}
                         >
                             <Radio onClick={()=>{navigate('/que3')}} checked 
-                             style={newstate3 ? {backgroundColor:'red', marginRight:'10px'} : {backgroundColor:'gray', marginRight:'10px'}} />
+                             style={newstate3 ? {backgroundColor:'lightgreen', marginRight:'10px'} : {backgroundColor:'gray', marginRight:'10px'}} />
                             <ListItemText primary='Q3' sx={{ opacity: open ? 1 : 0 }} />
                         </ListItemButton>
                         <ListItemButton
@@ -153,7 +153,7 @@ export default function Drawer() {
                             }}
                         >
                             <Radio onClick={()=>{navigate('/que4')}} checked
-                             style={newstate4 ? {backgroundColor:'red', marginRight:'10px'} : {backgroundColor:'gray', marginRight:'10px'}} />
+                             style={newstate4 ? {backgroundColor:'lightgreen', marginRight:'10px'} : {backgroundColor:'gray', marginRight:'10px'}} />
                             <ListItemText primary='Q4' sx={{ opacity: open ? 1 : 0 }} />
                         </ListItemButton>
                         <ListItemButton
@@ -164,7 +164,7 @@ export default function Drawer() {
                             }}
                         >
                             <Radio onClick={()=>{navigate('/que5')}} checked 
-                             style={newstate5 ? {backgroundColor:'red', marginRight:'10px'} : {backgroundColor:'gray', marginRight:'10px'}} />
+                             style={newstate5 ? {backgroundColor:'lightgreen', marginRight:'10px'} : {backgroundColor:'gray', marginRight:'10px'}} />
                             <ListItemText primary='Q5' sx={{ opacity: open ? 1 : 0 }} />
                         </ListItemButton>
                    
