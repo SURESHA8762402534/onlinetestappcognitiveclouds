@@ -44,10 +44,8 @@ const Result = () => {
       
       <PieChart
         data={[
-          { title: 'total',
-          
-          value: 6 - scores, color: 'red', totalValue: 6 },
-          { title: 'your score', value: scores , color: 'green', totalValue: 5 }
+          { title: 'total', value: 6 - scores, color: 'red', totalValue: 6 },
+          { title: 'your score', value: scores , color: 'green', totalValue: 6 }
 
         ]}
         radius={50}

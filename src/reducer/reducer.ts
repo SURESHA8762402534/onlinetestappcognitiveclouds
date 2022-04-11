@@ -50,7 +50,7 @@ const InitialValue = {
     ans3: false,
     ans4: false,
     ans5: false,
-    score: 4,
+    score: 0,
     rightans:[],
     wrongans:[],
     RightAns:['is an open-source JavaScript library that is used for building user interfaces specifically for single-page applications.',
@@ -66,9 +66,7 @@ const reducer = (state: initialValue = InitialValue, action: action) => {
             newState.drawer = !newState.drawer;
             break;
         case 'SCORE':
-          
             newState.score = newState.rightans.length
-           
             break;
         case 'ANS1':
             newState.ans1 = true

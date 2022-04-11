@@ -1,7 +1,5 @@
-import { useEffect, } from 'react';
 import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
-// import './App.css';
 import Drawer from './components/Drawer';
 import EntryPage from './components/EntryPage';
 import LoginPage from './components/LoginPage';
@@ -18,9 +16,6 @@ import {initialValue} from './reducer/reducer'
 
 function App() {
   const state = useSelector<initialValue, initialValue['drawer']>((state)=>state.drawer)
-
-  useEffect(()=>console.log(state),[state])
-
   
   return (
     <>
