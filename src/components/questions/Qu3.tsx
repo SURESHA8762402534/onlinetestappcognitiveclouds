@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Grid, Typography,  Radio, RadioGroup, FormControlLabel , Button} from '@mui/material';
+import { Grid, Typography,  Radio, RadioGroup, FormControlLabel , Button, Table, TableRow, TableCell} from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { useNavigate } from 'react-router-dom';
@@ -10,40 +10,31 @@ const Qu2 = () => {
   const questions = [
 
     {
-      questionText: 'What is Redux?',
+      questionText: '',
       answerOptions: [
-          { answerText: 'Librery', isCorrect: false },
-          { answerText: 'Framework', isCorrect: false },
-          { answerText: 'State Managemant Tool', isCorrect: true },
-          { answerText: 'Componet', isCorrect: false },
+          { answerText: '(1)-(a),(2)-(b),(3)-(c),(4)-(d)', isCorrect: false },
+          { answerText: '(1)-(a),(2)-(c),(3)-(d),(4)-(b)', isCorrect: false },
+          { answerText: '(1)-(b),(2)-(d),(3)-(a),(4)-(c)', isCorrect: true },
+          { answerText: '(1)-(b),(2)-(a),(3)-(d),(4)-(c)', isCorrect: false },
       ],
-      isclicked:true
+
   }
   ];
 
-  const [currentQuestion, setCurrentQuestion] = useState('');
+  const [currentAns, setAns] = useState<string[]>([])
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const [flag, setflag] = useState<boolean>(false)
 
   const handleAnswerOptionClick = (e: any) => {
-    setCurrentQuestion(e.target.value)
+    setAns([e.target.value])
+   
     dispatch({type:'ANS3'})
   };
 
-  const save = () => {
-    if(currentQuestion === 'State Managemant Tool'){
-      dispatch({type:'SCORE'})
-      dispatch({type:'RIGHTANSWER', payload:currentQuestion})
-    }
-    else {
-        dispatch({type:'WRONGANSWER',payload:currentQuestion})
-    }
-    setflag(true)
-  }
+  
   const goto = () => {
     navigate('/que4')
-    
+    dispatch({type:'ANSWER', payload:currentAns})
   }
 
   const backto = () => {
@@ -54,7 +45,45 @@ const Qu2 = () => {
      <Grid sx={{ml:22}}>
      <Grid xs={12}>
         <Typography sx={{ p: 3 }}>
-          Q3. {questions[0].questionText}
+          Q3. Match The following
+          
+          <Table>
+            <TableRow>
+              <TableCell>
+                1) Redux
+              </TableCell>
+              <TableCell>
+                a) Javascript Library
+              </TableCell>
+            </TableRow>
+
+            <TableRow>
+              <TableCell>
+                2) Props
+              </TableCell>
+              <TableCell>
+                b) State management Tool
+              </TableCell>
+            </TableRow>
+
+            <TableRow>
+              <TableCell>
+                3) React
+              </TableCell>
+              <TableCell>
+                c) Transpiler
+              </TableCell>
+            </TableRow>
+
+            <TableRow>
+              <TableCell>
+                4) Babel
+              </TableCell>
+              <TableCell>
+                d) pass to child component
+              </TableCell>
+            </TableRow>
+          </Table>
 
         </Typography>
 
@@ -93,7 +122,7 @@ const Qu2 = () => {
       <Grid container sx={{ m: 8 }}>
         <Grid item xs={2}><ArrowBackIcon onClick={backto} />  </Grid>
         <Grid item xs={7}></Grid>
-        <Grid item xs={2}><Button disabled={flag} variant='outlined' onClick={save} style={{backgroundColor:'grey',marginRight:20, color:'blue'}}>Save</Button><ArrowForwardIcon onClick={goto} /></Grid>
+        <Grid item xs={2}><ArrowForwardIcon onClick={goto} /></Grid>
       </Grid>
      </Grid>
     

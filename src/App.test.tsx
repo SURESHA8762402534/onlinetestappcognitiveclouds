@@ -139,7 +139,7 @@ describe('test for login page', () => {
          <Provider store={store}><Qu2/></Provider>
      </BrowserRouter>
     );
-    expect(screen.getAllByRole('radio').length).toBe(4)
+    expect(screen.getByRole('textbox')).toBeInTheDocument()
     screen.debug()
   });
 
@@ -159,7 +159,7 @@ describe('test for login page', () => {
          <Provider store={store}><Qu4/></Provider>
      </BrowserRouter>
     );
-    expect(screen.getAllByRole('radio').length).toBe(4)
+    expect(screen.getAllByRole('radio').length).toBe(2)
     screen.debug()
   });
 

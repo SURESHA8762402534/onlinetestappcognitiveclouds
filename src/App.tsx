@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 // import './App.css';
@@ -16,8 +16,6 @@ import SignUp from './components/SignUp';
 import {initialValue} from './reducer/reducer'
 
 
-//, initialValue['drawer']
-
 function App() {
   const state = useSelector<initialValue, initialValue['drawer']>((state)=>state.drawer)
 
@@ -33,7 +31,6 @@ function App() {
       <Route path='/login' element={<LoginPage/>}/>
       <Route path='signup' element={<SignUp/>}/>
       <Route path='/enterpage' element={<EntryPage/>}/>
-      {/* <Route path='/' element={<Drawer/>}/> */}
       <Route path='/que1' element={<Qu1/>}/>
       <Route path='/que2' element={<Qu2/>}/>
       <Route path='/que3' element={<Qu3/>}/>
@@ -46,3 +43,51 @@ function App() {
 }
 
 export default App;
+
+
+
+
+// import { useNavigate } from "react-router-dom";
+// import DetailsForm from "./components/question2/DetailsForm/DetailsForm";
+// import QuizPage from "./components/question2/QuizPage/QuizPage";
+// import {Result as Res} from "./components/question2/Result/Result";
+
+
+// const App: React.FC = () => {
+//   const [personalDetails, setPersonalDetails]: any = useState([]);
+//   const [data, setData]: any = useState([]);
+//   let navigate = useNavigate();
+
+//   return (
+//     <div className="app">
+//       <Routes>
+//         <Route
+//           path="/"
+//           element={
+//             <DetailsForm
+//               navigate={navigate}
+//               setPersonalDetails={setPersonalDetails}
+//             />
+//           }
+//         />
+//         <Route
+//           path="/quiz"
+//           element={
+//             <QuizPage
+//               language={personalDetails.language}
+//               setData={setData}
+//               data={data}
+//               navigate={navigate} 
+//             />
+//           }
+//         />
+//         <Route
+//           path="/result"
+//           element={<Res data={data} />}
+//         />
+//       </Routes>
+//     </div>
+//   );
+// };
+
+// export default App;

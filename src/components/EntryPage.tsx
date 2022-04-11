@@ -78,7 +78,7 @@ const EntryPage = () => {
             <ListItemIcon>
               <StarIcon />
             </ListItemIcon>
-            <Typography>Answered questions will be shown in red color and unanswered in grey color.</Typography>
+            <Typography>Answered questions will be shown in green color and unanswered in grey color.</Typography>
           </ListItemButton>
         </ListItem>
 
@@ -105,7 +105,8 @@ const EntryPage = () => {
                   onChange={handleChange}
                   defaultValue='Select'
                 >
-                  <MenuItem value='Reactjs'>React JS</MenuItem>
+                  <MenuItem value='Reactjs'>React js</MenuItem>
+                  
                    </Select>
               </TableCell>
               <TableCell>

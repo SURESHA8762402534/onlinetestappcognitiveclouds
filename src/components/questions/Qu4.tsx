@@ -11,40 +11,30 @@ const Qu2 = () => {
   const questions = [
 
     {
-      questionText: 'Can you use Hooks in class component?',
+      questionText: 'We use Hooks in class component?',
       answerOptions: [
-          { answerText: 'YES', isCorrect: false },
-          { answerText: 'NO', isCorrect: true },
-          { answerText: 'SOMETIMES', isCorrect: false },
-          { answerText: 'NONE OF THE ABOW', isCorrect: false },
+          { answerText: 'True' },
+          { answerText: 'False' },
       ],
-      isclicked:true
+     
   }
   ];
 
-  const [currentQuestion, setCurrentQuestion] = useState('');
+  const [currentAns, setAns] = useState<string[]>([])
   const navigate = useNavigate();
   const dispatch =useDispatch();
-  const [flag, setflag] = useState<boolean>(false)
+  
 
   const handleAnswerOptionClick = (e: any) => {
-    setCurrentQuestion(e.target.value)
+    setAns([e.target.value])
+    
     dispatch({type:'ANS4'})
   };
 
-  const save = () => {
-    if(currentQuestion === 'NO'){
-      dispatch({type:'SCORE'})
-      dispatch({type:'RIGHTANSWER', payload:currentQuestion})
-    }
-    else {
-        dispatch({type:'WRONGANSWER',payload:currentQuestion})
-    }
-    setflag(true)
-  }
+  
   const goto = () => {
     navigate('/que5')
-    
+    dispatch({type:'ANSWER', payload:currentAns})
   }
 
   const backto = () => {
@@ -94,7 +84,7 @@ const Qu2 = () => {
       <Grid container sx={{ m: 8 }}>
         <Grid item xs={2}><ArrowBackIcon onClick={backto} />  </Grid>
         <Grid item xs={7}></Grid>
-        <Grid item xs={2}><Button disabled={flag} variant='outlined' onClick={save} style={{backgroundColor:'grey',marginRight:20, color:'blue'}}>Save</Button><ArrowForwardIcon onClick={goto} /></Grid>
+        <Grid item xs={2}><ArrowForwardIcon onClick={goto} /></Grid>
       </Grid>
       </Grid>
     

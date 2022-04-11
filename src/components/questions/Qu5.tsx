@@ -12,39 +12,32 @@ const Qu2 = () => {
     {
       questionText: 'What is JSX?',
       answerOptions: [
-          { answerText: 'It is a Library, which used to right HTML code', isCorrect: false },
-          { answerText: 'It allows us to write HTML inside JavaScript ', isCorrect: true },
-          { answerText: 'help react identify which elements were added, changed or removed', isCorrect: false },
-          { answerText: 'NONE OF THE ABOW', isCorrect: false },
+          { answerText: 'It is a Library', isCorrect: false },
+          { answerText: 'It allows us to write HTML inside JavaScript', isCorrect: true },
+          { answerText: 'JSX stands for JavaScript XML', isCorrect: false },
+          { answerText: 'JSX stands for JavaScript extention', isCorrect: false },
       ],
-      isclicked:true
+     
   }
   ];
-
-  const [currentQuestion, setCurrentQuestion] = useState('');
+  const [currentAns, setAns] = useState<string[]>([])
   const navigate = useNavigate();
   const dispatch =useDispatch()
-  const [flag, setflag] = useState<boolean>(false)
 
   const handleAnswerOptionClick = (e: any) => {
-    setCurrentQuestion(e.target.value)
+    setAns([...currentAns, e.target.value])
     dispatch({type:'ANS5'})
   };
 
-  const save = () => {
-    if(currentQuestion === 'It allows us to write HTML inside JavaScript '){
-      dispatch({type:'SCORE'})
-      dispatch({type:'RIGHTANSWER', payload:currentQuestion})
-    }
-    else {
-        dispatch({type:'WRONGANSWER',payload:currentQuestion})
-    }
-    setflag(true)
-  }
 
   const goto = () => {
     navigate('/result')
     dispatch({type:'SET_DRAWER'})
+    dispatch({type:'SCORE'}) 
+    if(currentAns.length === 2){
+      dispatch({type:'ANSWER', payload:currentAns})
+    }
+    
   }
 
   const backto = () => {
@@ -68,19 +61,16 @@ const Qu2 = () => {
 
         <RadioGroup
 
-          row
-          aria-labelledby="demo-row-radio-buttons-group-label"
-          name="row-radio-buttons-group"
+          
+          // aria-labelledby="demo-row-radio-buttons-group-label"
+          // name="row-radio-buttons-group"
           onChange={(e) => { console.log(e.target.value) }}
           onClick={handleAnswerOptionClick}
         >
           {questions[0].answerOptions.map((answerOption, idx) => (
-            <>
-              
-                <FormControlLabel sx={{width:'200rem',ml:5}} key={idx} value={answerOption.answerText} control={<Radio />} label={answerOption.answerText} />
-             
-
-            </>
+            <span key={idx} style={{width:'200rem', marginLeft:'2rem', fontSize:'1.2rem'}}>
+              <input type='radio' value={answerOption.answerText} /> <label htmlFor="">{answerOption.answerText}</label>
+            </span>
 
 
           ))}
@@ -92,7 +82,7 @@ const Qu2 = () => {
       <Grid container sx={{ m: 8 }}>
         <Grid item xs={2}><Button><ArrowBackIcon onClick={backto} /></Button>  </Grid>
         <Grid item xs={7}></Grid>
-        <Grid item xs={2}><Button disabled={flag} variant='outlined' onClick={save} style={{backgroundColor:'grey',marginRight:20, color:'blue'}}>Save</Button><Button variant='outlined' onClick={goto} >Submit</Button></Grid>
+        <Grid item xs={2}><Button variant='outlined' onClick={goto} >Submit</Button></Grid>
       </Grid>
     </Grid>
     

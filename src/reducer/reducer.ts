@@ -7,7 +7,8 @@ export interface initialValue {
     ans5: boolean,
     score: number,
     rightans: string[],
-    wrongans: string[]
+    wrongans: string[],
+    RightAns:string[]
     
 }
 
@@ -37,8 +38,8 @@ interface wronganswers {
     payload:string
 }
 interface rightanswers {
-    type:'RIGHTANSWER',
-    payload:string
+    type:'ANSWER',
+    payload:string[]
 }
 type action = draweraction | scoreaction | ans1 | ans2 | ans3 | ans4 | ans5 |wronganswers | rightanswers
 
@@ -49,9 +50,12 @@ const InitialValue = {
     ans3: false,
     ans4: false,
     ans5: false,
-    score: 0,
+    score: 4,
     rightans:[],
-    wrongans:[]
+    wrongans:[],
+    RightAns:['is an open-source JavaScript library that is used for building user interfaces specifically for single-page applications.',
+                'facebook','(1)-(b),(2)-(d),(3)-(a),(4)-(c)','False', 'It allows us to write HTML inside JavaScript' , 'JSX stands for JavaScript XML'
+]
 }
 
 const reducer = (state: initialValue = InitialValue, action: action) => {
@@ -60,17 +64,15 @@ const reducer = (state: initialValue = InitialValue, action: action) => {
     switch (action.type) {
         case 'SET_DRAWER':
             newState.drawer = !newState.drawer;
-            // console.log(newState.drawer)
             break;
         case 'SCORE':
-            newState.score += 1
-            // console.log(newState.score)
+          
+            newState.score = newState.rightans.length
+           
             break;
         case 'ANS1':
             newState.ans1 = true
-            // console.log(newState.ans1)
             break;
-
         case 'ANS2':
             newState.ans2 = true
             break;
@@ -83,12 +85,22 @@ const reducer = (state: initialValue = InitialValue, action: action) => {
         case 'ANS5':
             newState.ans5 =true
             break;
-        case 'RIGHTANSWER':
-             newState.rightans = [...newState.rightans, action.payload]
+        case 'ANSWER':
+            action.payload.map(item => {
+                if(newState.RightAns.includes(item)){
+                    if(!newState.rightans.includes(item)){
+                        newState.rightans = [...newState.rightans, item]
+                    }
+                }else 
+                    if(!newState.wrongans.includes(item)){
+                        newState.wrongans = [...newState.wrongans, item]
+                    }
+                    
+            })
+           
+            
              break;
-        case 'WRONGANSWER':
-            newState.wrongans = [...newState.wrongans, action.payload]
-            break;
+        
         default:
             break;
     }

@@ -1,17 +1,10 @@
 import React, { useState } from 'react';
-import { Grid,  Typography,  Radio, RadioGroup, FormControlLabel, Button } from '@mui/material';
+import { Grid, Typography, Radio, RadioGroup, FormControlLabel, Button } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
-// const Item = styled(Paper)(({ theme }) => ({
-//     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-//     ...theme.typography.body2,
-//     padding: theme.spacing(1),
-//     textAlign: 'center',
-//     color: theme.palette.text.primary,
-// }));
 
 export default function Qu1() {
     const questions = [
@@ -28,30 +21,23 @@ export default function Qu1() {
 
     ];
 
-    const [currentQuestion, setCurrentQuestion] = useState('');
+    const [currentAns, setAns] = useState<string[]>([]);
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const [flag, setflag] = useState<boolean>(false)
+
 
     const handleAnswerOptionClick = (e: any) => {
-        setCurrentQuestion(e.target.value)
-        dispatch({type:'ANS1'})
-        
+        setAns([e.target.value])
+            
+       
+            dispatch({ type: 'ANS1' })
+
+
     };
-    const save = () => {
-        if(currentQuestion === 'is an open-source JavaScript library that is used for building user interfaces specifically for single-page applications.'){
-            dispatch({type:'SCORE'})
-            dispatch({type:'RIGHTANSWER', payload:currentQuestion})
-        }
-        else {
-            dispatch({type:'WRONGANSWER',payload:currentQuestion})
-        }
-        setflag(true)
-    }
 
     const goto = () => {
         navigate('/que2')
-        
+        dispatch({ type: 'ANSWER', payload:currentAns })
     }
 
     const backto = () => {
@@ -60,59 +46,59 @@ export default function Qu1() {
     return (
 
 
-<>
+        <>
 
 
-        <Grid container spacing={2} sx={{ml:22}}>
-            
-                
-                    <Grid key={currentQuestion} item xs={12}>
-                        <Typography sx={{ p: 3 }}>
-                            Q1. {questions[0].questionText}
-                        </Typography>
-
-                    </Grid>
-
-                    <Grid item xs={12} sx={{ m: 1 }}>
+            <Grid container spacing={2} sx={{ ml: 22 }}>
 
 
+                <Grid item xs={12}>
+                    <Typography sx={{ p: 3 }}>
+                        Q1. {questions[0].questionText}
+                    </Typography>
 
-                        <RadioGroup
+                </Grid>
 
-                            row
-                            aria-labelledby="demo-row-radio-buttons-group-label"
-                            name="row-radio-buttons-group"
-                            onChange={(e) => { console.log(e.target.value) }}
-                            onClick={handleAnswerOptionClick}
-                        >
-                            {questions[0].answerOptions.map((answerOption, idx) => (
-                                <>
-                                 
-                                        <FormControlLabel key={idx} sx={{width:'200rem',ml:5}}   
-                                        value={answerOption.answerText} 
-                                        control={<Radio />} 
-                                        label={answerOption.answerText} 
-                                        />
-                                  
-                                </>
+                <Grid item xs={12} sx={{ m: 1 }}>
 
 
-                            ))}
 
-                        </RadioGroup>
-                       
+                    <RadioGroup
 
-                    </Grid>
+                        row
+                        aria-labelledby="demo-row-radio-buttons-group-label"
+                        name="row-radio-buttons-group"
+                        onChange={(e) => { console.log(e.target.value) }}
+                        onClick={handleAnswerOptionClick}
+                    >
+                        {questions[0].answerOptions.map((answerOption, idx) => (
+                            <>
+
+                                <FormControlLabel key={idx} sx={{ width: '200rem', ml: 5 }}
+                                    value={answerOption.answerText}
+                                    control={<Radio />}
+                                    label={answerOption.answerText}
+                                />
+
+                            </>
 
 
-                
-            <Grid container sx={{ m: 8 }}>
-                <Grid item xs={2}><Button disabled><ArrowBackIcon onClick={backto} /></Button>  </Grid>
-                <Grid item xs={7}></Grid>
-                <Grid item xs={2}><Button disabled={flag} variant='outlined' onClick={save} style={{backgroundColor:'grey',marginRight:20, color:'blue'}}>Save</Button> <ArrowForwardIcon onClick={goto} /></Grid>
+                        ))}
+
+                    </RadioGroup>
+
+
+                </Grid>
+
+
+
+                <Grid container sx={{ m: 8 }}>
+                    <Grid item xs={2}><Button disabled><ArrowBackIcon onClick={backto} /></Button>  </Grid>
+                    <Grid item xs={7}></Grid>
+                    <Grid item xs={2}> <ArrowForwardIcon onClick={goto} /></Grid>
+                </Grid>
             </Grid>
-        </Grid>
-     
+
         </>
 
 
