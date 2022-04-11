@@ -33,10 +33,11 @@ const Qu2 = () => {
   const goto = () => {
     navigate('/result')
     dispatch({type:'SET_DRAWER'})
-    dispatch({type:'SCORE'}) 
+    
     if(currentAns.length === 2){
       dispatch({type:'ANSWER', payload:currentAns})
     }
+    setTimeout(() => dispatch({type:'SCORE'}) ,0)
     
   }
 
