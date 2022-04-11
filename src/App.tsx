@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, } from 'react';
 import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 // import './App.css';
@@ -44,50 +44,3 @@ function App() {
 
 export default App;
 
-
-
-
-// import { useNavigate } from "react-router-dom";
-// import DetailsForm from "./components/question2/DetailsForm/DetailsForm";
-// import QuizPage from "./components/question2/QuizPage/QuizPage";
-// import {Result as Res} from "./components/question2/Result/Result";
-
-
-// const App: React.FC = () => {
-//   const [personalDetails, setPersonalDetails]: any = useState([]);
-//   const [data, setData]: any = useState([]);
-//   let navigate = useNavigate();
-
-//   return (
-//     <div className="app">
-//       <Routes>
-//         <Route
-//           path="/"
-//           element={
-//             <DetailsForm
-//               navigate={navigate}
-//               setPersonalDetails={setPersonalDetails}
-//             />
-//           }
-//         />
-//         <Route
-//           path="/quiz"
-//           element={
-//             <QuizPage
-//               language={personalDetails.language}
-//               setData={setData}
-//               data={data}
-//               navigate={navigate} 
-//             />
-//           }
-//         />
-//         <Route
-//           path="/result"
-//           element={<Res data={data} />}
-//         />
-//       </Routes>
-//     </div>
-//   );
-// };
-
-// export default App;

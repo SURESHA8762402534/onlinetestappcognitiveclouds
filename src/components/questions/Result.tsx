@@ -46,7 +46,7 @@ const Result = () => {
         data={[
           { title: 'total',
           
-          value: 5 - scores, color: 'red', totalValue: 5 },
+          value: 6 - scores, color: 'red', totalValue: 6 },
           { title: 'your score', value: scores , color: 'green', totalValue: 5 }
 
         ]}

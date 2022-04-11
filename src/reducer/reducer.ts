@@ -86,7 +86,7 @@ const reducer = (state: initialValue = InitialValue, action: action) => {
             newState.ans5 =true
             break;
         case 'ANSWER':
-            action.payload.map(item => {
+            action.payload.forEach(item => {
                 if(newState.RightAns.includes(item)){
                     if(!newState.rightans.includes(item)){
                         newState.rightans = [...newState.rightans, item]
