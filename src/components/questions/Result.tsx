@@ -1,4 +1,4 @@
-import { PieChart } from 'react-minimal-pie-chart';
+// import { PieChart } from 'react-minimal-pie-chart';
 import { useSelector } from 'react-redux';
 import { initialValue } from '../../reducer/reducer';
 
@@ -9,15 +9,16 @@ const Result = () => {
   const WRONGANSWER = useSelector<initialValue, initialValue['wrongans']>(state => state.wrongans)
   const scores = useSelector<initialValue, initialValue['score']>(state => state.score)
 
+  const start = scores * 60
 
-  // const mystyle = {
-  //   height: '30rem',
-  //   width: '30rem',
-  //   backgroundColor: "red",
-  //   backgroundImage: `conic-gradient(green 0deg, green calc(${scores}*60)deg,  red calc(${scores}*60)deg, red 360deg)`,
-  //   borderRadius: "50%"
+  const mystyle = {
+    height: '20rem',
+    width: '20rem',
+    backgroundColor: "red",
+    backgroundImage: `conic-gradient(green 0deg, green ${start}deg,  red ${start}deg, red 360deg)`,
+    borderRadius: "50%"
 
-  // }
+  }
 
   return (
     <div>
@@ -40,18 +41,20 @@ const Result = () => {
       </div>
 
       <div style={{ float: 'right', marginRight: '10rem', marginTop: '5rem' }}>
-         {/* <div style={mystyle}></div> */}
-      
-      <PieChart
-        data={[
-          { title: 'total', value: 6 - scores, color: 'red', totalValue: 6 },
-          { title: 'your score', value: scores , color: 'green', totalValue: 6 }
+      <div style={mystyle}></div>
+        {/* <PieChart
+          data={[
+            { title: 'total', value: 6 - scores, color: 'red', totalValue: 6 },
+            { title: 'your score', value: scores, color: 'green', totalValue: 6 }
 
-        ]}
-        radius={50}
-   
-      />;
-</div>
+          ]}
+          radius={50}
+
+        />; */}
+
+        
+
+      </div>
 
 
     </div>
