@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState } from 'react'
 import { Grid, Typography, Button } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -25,6 +25,7 @@ const Qu2 = () => {
   const save = () => {
     setflag(true)
     dispatch({ type: 'ANS2' })
+    dispatch({ type: 'ANSWER', payload: input })
   }
   const goto = () => {
     navigate('/que3')
@@ -34,10 +35,6 @@ const Qu2 = () => {
   const backto = () => {
     navigate('/que1')
   }
-
-  useEffect(() => {
-    return ()=> {dispatch({ type: 'ANSWER', payload: input })};
-})
 
   return (
     <>
