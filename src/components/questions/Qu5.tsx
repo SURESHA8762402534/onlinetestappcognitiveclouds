@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,} from 'react'
 import { Grid, Typography, Button,  RadioGroup,  } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useNavigate } from 'react-router-dom';
@@ -45,6 +45,8 @@ const Qu2 = () => {
     
    navigate('/que4')
   }
+  
+
   return (
     <>
     <Grid sx={{ml:22}}>
@@ -58,11 +60,7 @@ const Qu2 = () => {
 
       <Grid item xs={12} sx={{ m: 1 }}>
 
-
-
         <RadioGroup
-
-          
           // aria-labelledby="demo-row-radio-buttons-group-label"
           // name="row-radio-buttons-group"
           onChange={(e) => { console.log(e.target.value) }}

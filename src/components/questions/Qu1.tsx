@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Grid, Typography, Radio, RadioGroup, FormControlLabel, Button } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -28,21 +28,21 @@ export default function Qu1() {
 
     const handleAnswerOptionClick = (e: any) => {
         setAns([e.target.value])
-            
-       
-            dispatch({ type: 'ANS1' })
-
-
+        dispatch({ type: 'ANS1' })
     };
 
     const goto = () => {
         navigate('/que2')
-        dispatch({ type: 'ANSWER', payload:currentAns })
     }
-
+    
     const backto = () => {
         navigate('/enterpage')
     }
+
+    useEffect(() => {
+        return ()=> {dispatch({ type: 'ANSWER', payload:currentAns })};
+    })
+
     return (
 
 

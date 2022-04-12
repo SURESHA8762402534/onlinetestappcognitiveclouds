@@ -33,15 +33,12 @@ interface ans4 {
 interface ans5 {
     type: 'ANS5'
 }
-interface wronganswers {
-    type:'WRONGANSWER',
-    payload:string
-}
+
 interface rightanswers {
     type:'ANSWER',
     payload:string[]
 }
-type action = draweraction | scoreaction | ans1 | ans2 | ans3 | ans4 | ans5 |wronganswers | rightanswers
+type action = draweraction | scoreaction | ans1 | ans2 | ans3 | ans4 | ans5 | rightanswers
 
 const InitialValue = {
     drawer: false,

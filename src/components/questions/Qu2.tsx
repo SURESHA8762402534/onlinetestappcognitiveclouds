@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { Grid, Typography, Button } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -7,8 +7,8 @@ import { useDispatch } from 'react-redux';
 
 
 const Qu2 = () => {
-  const questions = {questionText: 'React is Built by?'}
-  
+  const questions = { questionText: 'React is Built by?' }
+
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const [flag, setflag] = useState<boolean>(false)
@@ -18,14 +18,11 @@ const Qu2 = () => {
 
   const handelChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setname([e.target.value])
-   
+
   }
 
 
   const save = () => {
-    
-      dispatch({ type: 'ANSWER', payload: input })
-   
     setflag(true)
     dispatch({ type: 'ANS2' })
   }
@@ -37,6 +34,11 @@ const Qu2 = () => {
   const backto = () => {
     navigate('/que1')
   }
+
+  useEffect(() => {
+    return ()=> {dispatch({ type: 'ANSWER', payload: input })};
+})
+
   return (
     <>
       <Grid sx={{ ml: 22 }}>
@@ -48,7 +50,7 @@ const Qu2 = () => {
 
         </Grid>
 
-        <Grid item xs={12} sx={{ m: 1, ml:10 }}>
+        <Grid item xs={12} sx={{ m: 1, ml: 10 }}>
 
           <form action="">
             <input
@@ -58,10 +60,10 @@ const Qu2 = () => {
               onChange={handelChange}
               value={input}
               placeholder="enter you answer here"
-              style={{ height: '2.5rem',width:'15rem', margin: '10px' }}
+              style={{ height: '2.5rem', width: '15rem', margin: '10px' }}
             />
-            <Button  variant='outlined' onClick={save} style={{ backgroundColor: 'grey', marginRight: 20, color: 'blue' }}>Save</Button>
-            {flag? <h5>{input}</h5> : null}
+            <Button variant='outlined' onClick={save} style={{ backgroundColor: 'grey', marginRight: 20, color: 'blue' }}>Save</Button>
+            {flag ? <h5>{input}</h5> : null}
 
           </form>
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { Grid, Typography,  Radio, RadioGroup, FormControlLabel} from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -34,12 +34,15 @@ const Qu2 = () => {
   
   const goto = () => {
     navigate('/que5')
-    dispatch({type:'ANSWER', payload:currentAns})
   }
 
   const backto = () => {
    navigate('/que3')
   }
+  useEffect(() => {
+    return ()=> {dispatch({ type: 'ANSWER', payload:currentAns })};
+})
+
   return (
     <>
       <Grid sx={{ml:22}}>
