@@ -3,58 +3,65 @@ import { Grid, Typography, Radio, RadioGroup, FormControlLabel, Button } from '@
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { initialValue } from '../../reducer/reducer';
 
-export default function Qu1() {
-    const questions = [
-        {
-            questionText: 'What is React js?',
-            answerOptions: [
-                { answerText: ' is an open-source JavaScript framework, designed for building apps on multiple platforms like iOS, Android, and also web applications,', isCorrect: false },
-                { answerText: 'A component-based framework for building scalable web applications ', isCorrect: false },
-                { answerText: 'is an open-source JavaScript library that is used for building user interfaces specifically for single-page applications.', isCorrect: true },
-                { answerText: 'none of the Abow', isCorrect: false },
-            ],
-            isclicked: true
-        }
+type Props = {
+    queObj: any;
+    currPage: number;
+    data: any;
+    prevQue: any;
+    nextQue: any;
+    // handleQueAttempt: any;
+    // handleFinishTest: any;
+};
 
-    ];
+const Qu1: React.FC<Props> = ({ ...props }) => {
 
-    const [currentAns, setAns] = useState<string[]>([]);
-    const navigate = useNavigate()
+    const [currentAns, setAns] = useState<string>('');
+
     const dispatch = useDispatch()
+    const navigate = useNavigate();
 
+    const checkstate = useSelector<initialValue, initialValue['rightans']>(state => state.rightans);
 
     const handleAnswerOptionClick = (e: any) => {
-        setAns([e.target.value])
-        dispatch({ type: 'ANS1' })
+        setAns(e.target.value)
+
     };
 
     const goto = () => {
-        navigate('/que2')
-    }
-    
-    const backto = () => {
-        navigate('/enterpage')
+        navigate('/result')
+        dispatch({ type: 'SCORE' })
+        console.log(props.queObj)
+
     }
 
+    const save =()=>{}
     useEffect(() => {
-        return ()=> {dispatch({ type: 'ANSWER', payload:currentAns })};
-    })
+           if(currentAns !== ''){
+            if (props.data.answer === currentAns) {
+                dispatch({ type: 'ANSWER', payload:{id:props.data.id, que:props.data.questionText, currentAns} })
+                
+            } else {
+                dispatch({ type: 'WRONGANS', payload:{id:props.data.id, que:props.data.questionText, currentAns} })
+            }
+            dispatch({type:'ID', payload:props.currPage+1})
+           }
+       
+    },[currentAns])
 
     return (
 
-
         <>
 
-
-            <Grid container spacing={2} sx={{ ml: 22 }}>
+            <Grid container spacing={2} sx={{ ml: 10 }}>
 
 
                 <Grid item xs={12}>
                     <Typography sx={{ p: 3 }}>
-                        Q1. {questions[0].questionText}
+                        Q{props.currPage + 1}. {props.data?.questionText}
                     </Typography>
 
                 </Grid>
@@ -71,10 +78,10 @@ export default function Qu1() {
                         onChange={(e) => { console.log(e.target.value) }}
                         onClick={handleAnswerOptionClick}
                     >
-                        {questions[0].answerOptions.map((answerOption, idx) => (
+                        {props.data.answerOptions.map((answerOption: any, idx: any) => (
                             <>
 
-                                <FormControlLabel key={idx} sx={{ width: '200rem', ml: 5 }}
+                                <FormControlLabel key={idx} sx={{ width: '200rem', ml: 5 , m:1}}
                                     value={answerOption.answerText}
                                     control={<Radio />}
                                     label={answerOption.answerText}
@@ -93,10 +100,12 @@ export default function Qu1() {
 
 
                 <Grid container sx={{ m: 8 }}>
-                    <Grid item xs={2}><Button disabled><ArrowBackIcon onClick={backto} /></Button>  </Grid>
-                    <Grid item xs={7}></Grid>
-                    <Grid item xs={2}> <ArrowForwardIcon onClick={goto} /></Grid>
-                </Grid>
+          <Grid item xs={2}><Button onClick={props.prevQue} variant='outlined' disabled={props.currPage <= 0}><ArrowBackIcon /></Button>  </Grid>
+          <Grid item xs={6}></Grid>
+          <Grid item xs={1}><Button disabled={props.data.type != "multi-select"} variant='outlined' onClick={save} >Save</Button></Grid>
+          <Grid item xs={1}><Button disabled={props.currPage < props.queObj.length - 1} variant='outlined' onClick={goto} >Submit</Button></Grid>
+          <Grid item xs={1}> <Button variant='outlined' disabled={props.currPage >= props.queObj.length - 1} onClick={props.nextQue}><ArrowForwardIcon /></Button></Grid>
+        </Grid>
             </Grid>
 
         </>
@@ -104,3 +113,5 @@ export default function Qu1() {
 
     );
 }
+
+export default Qu1

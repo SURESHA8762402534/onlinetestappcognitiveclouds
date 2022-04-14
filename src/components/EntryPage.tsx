@@ -3,14 +3,15 @@ import { Grid, Typography, List, ListItem, ListItemButton, ListItemIcon,
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import StarIcon from '@mui/icons-material/Star';
-import { useDispatch } from 'react-redux';
-import { Dispatch } from 'react';
 
 
-const EntryPage = () => {
+type Props = {
+  setLanguage:any
+}
+
+const EntryPage: React.FC<Props> = ({ ...props }) => {
   const [language, setLanguage] = React.useState('');
   const navigate = useNavigate()
-  const dispatch: Dispatch<any> = useDispatch()
 
   const handleChange = (event: SelectChangeEvent) => {
     setLanguage(event.target.value);
@@ -18,10 +19,9 @@ const EntryPage = () => {
   const submit = () => {
     // console.log(language);
     if (language === 'Reactjs') {
-      navigate('/que1')
-      dispatch({type:'SET_DRAWER'})
+      navigate('/quiz')
     }
-    
+    props.setLanguage(language)
   }
   return (
 
