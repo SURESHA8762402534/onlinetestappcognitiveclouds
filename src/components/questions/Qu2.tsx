@@ -11,8 +11,7 @@ type Props = {
   data: any;
   prevQue: any;
   nextQue: any;
-  // handleQueAttempt: any;
-  // handleFinishTest: any;
+  
 };
 
 const Qu2: React.FC<Props> = ({ ...props }) => {
@@ -36,13 +35,9 @@ const Qu2: React.FC<Props> = ({ ...props }) => {
   const save = () => {
     setflag(true)
     if(currentAns !== ''){
-      if (props.data.answer === currentAns) {
-        dispatch({ type: 'ANSWER', payload: {id:props.data.id, que:props.data.questionText, currentAns} })
-      } else {
-        dispatch({ type: 'WRONGANS', payload: {id:props.data.id, que:props.data.questionText, currentAns} })
-      }
+      dispatch({type:'ANS', payload:{queId:props.data.id, ans:currentAns}})
       dispatch({type:'ID', payload:props.currPage+1})
-    }
+  }
     
   }
 
@@ -82,7 +77,7 @@ const Qu2: React.FC<Props> = ({ ...props }) => {
         <Grid container sx={{ m: 8 }}>
           <Grid item xs={2}><Button onClick={props.prevQue} variant='outlined' disabled={props.currPage <= 0}><ArrowBackIcon /></Button>  </Grid>
           <Grid item xs={6}></Grid>
-          <Grid item xs={1}><Button disabled={props.data.type != "multi-select"} variant='outlined' onClick={save} >Save</Button></Grid>
+          <Grid item xs={1}><Button disabled={props.data.type !== "multi-select"} variant='outlined' onClick={save} >Save</Button></Grid>
           <Grid item xs={1}><Button disabled={props.currPage < props.queObj.length - 1} variant='outlined' onClick={goto} >Submit</Button></Grid>
           <Grid item xs={1}> <Button variant='outlined' disabled={props.currPage >= props.queObj.length - 1} onClick={props.nextQue}><ArrowForwardIcon /></Button></Grid>
         </Grid>

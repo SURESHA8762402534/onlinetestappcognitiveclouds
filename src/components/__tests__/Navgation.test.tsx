@@ -1,13 +1,12 @@
+import { Pagination } from '@mui/material';
 import {screen, render, fireEvent, getByRole} from '@testing-library/react'
+import { Provider } from 'react-redux';
 import {BrowserRouter, Link} from 'react-router-dom';
+import { store } from '../../Store';
 import EntryPage from '../EntryPage';
 import Nav from '../Nav';
 import SignUp from '../SignUp';
 
-test('dummy2',()=>{
-    const val = true
-    expect(val).toBe(true)
-})
 
 test('get snapshot of navbar', ()=>{
     const tree = render(
@@ -34,20 +33,22 @@ describe('test Signup button', ()=>{
         expect(screen.getByRole('button')).toBeInTheDocument()
     });
 
-    // test('button function',()=>{
-    //     const mockfun = jest.fn();
-    //     // render(
-    //     //     <BrowserRouter><SignUp onClick={mockfun}/></BrowserRouter>
-    //     // );
+    test('button function',()=>{
+        const mockfun = jest.fn();
+        render(
+            <BrowserRouter><EntryPage setLanguage={mockfun}/></BrowserRouter>
+        );
         
-    //     fireEvent.click(screen.getByRole('button'));
-    //     expect(mockfun).toHaveBeenCalled();
-    // })
+        fireEvent.click(screen.getByText('Start Test'));
+        expect(mockfun).toHaveBeenCalled();
+    })
 
     test('test for enter page',()=>{
         render(
             <BrowserRouter><EntryPage setLanguage={()=>{}}/></BrowserRouter>
         );
+        expect(screen.getByText('Start Test')).toBeInTheDocument()
             screen.debug()
     })
+
 })

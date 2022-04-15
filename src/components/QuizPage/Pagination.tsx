@@ -4,7 +4,7 @@ import  { initialValue } from '../../reducer/reducer'
 
 type Props = {
   data: any;
-  currPage: number;
+  currPage: any;
   setCurrPage: any;
 };
 

@@ -5,10 +5,7 @@ import Question from "./Question";
 import Pagination from "./Pagination";
 
 type Props = {
-  language: any;
   data: any;
-  setData: any;
-  navigate: any;
 };
 
 const QuizPage: React.FC<Props> = ({ ...props }) => {

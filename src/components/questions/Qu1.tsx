@@ -4,17 +4,15 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { useNavigate } from 'react-router-dom';
 
-import { useDispatch, useSelector } from 'react-redux';
-import { initialValue } from '../../reducer/reducer';
+import { useDispatch } from 'react-redux';
 
 type Props = {
     queObj: any;
-    currPage: number;
+    currPage: any;
     data: any;
     prevQue: any;
     nextQue: any;
-    // handleQueAttempt: any;
-    // handleFinishTest: any;
+  
 };
 
 const Qu1: React.FC<Props> = ({ ...props }) => {
@@ -24,10 +22,9 @@ const Qu1: React.FC<Props> = ({ ...props }) => {
     const dispatch = useDispatch()
     const navigate = useNavigate();
 
-    const checkstate = useSelector<initialValue, initialValue['rightans']>(state => state.rightans);
-
     const handleAnswerOptionClick = (e: any) => {
         setAns(e.target.value)
+        // console.log(e.target)
 
     };
 
@@ -39,16 +36,12 @@ const Qu1: React.FC<Props> = ({ ...props }) => {
     }
 
     const save =()=>{}
+
     useEffect(() => {
-           if(currentAns !== ''){
-            if (props.data.answer === currentAns) {
-                dispatch({ type: 'ANSWER', payload:{id:props.data.id, que:props.data.questionText, currentAns} })
-                
-            } else {
-                dispatch({ type: 'WRONGANS', payload:{id:props.data.id, que:props.data.questionText, currentAns} })
-            }
+        if(currentAns !== ''){
+            dispatch({type:'ANS', payload:{queId:props.data.id, ans:currentAns}})
             dispatch({type:'ID', payload:props.currPage+1})
-           }
+        }  
        
     },[currentAns])
 
@@ -102,7 +95,7 @@ const Qu1: React.FC<Props> = ({ ...props }) => {
                 <Grid container sx={{ m: 8 }}>
           <Grid item xs={2}><Button onClick={props.prevQue} variant='outlined' disabled={props.currPage <= 0}><ArrowBackIcon /></Button>  </Grid>
           <Grid item xs={6}></Grid>
-          <Grid item xs={1}><Button disabled={props.data.type != "multi-select"} variant='outlined' onClick={save} >Save</Button></Grid>
+          <Grid item xs={1}><Button disabled={props.data.type !== "multi-select"} variant='outlined' onClick={save} >Save</Button></Grid>
           <Grid item xs={1}><Button disabled={props.currPage < props.queObj.length - 1} variant='outlined' onClick={goto} >Submit</Button></Grid>
           <Grid item xs={1}> <Button variant='outlined' disabled={props.currPage >= props.queObj.length - 1} onClick={props.nextQue}><ArrowForwardIcon /></Button></Grid>
         </Grid>

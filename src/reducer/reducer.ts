@@ -4,7 +4,7 @@ export interface initialValue {
     rightans: {}[],
     wrongans: {}[],
     ansID:number[]
-    
+    answers:{}[]
 }
 
 
@@ -12,12 +12,12 @@ interface scoreaction {
     type: 'SCORE'
 }
 
-interface rightanswers {
+interface rightanswer {
     type:'ANSWER',
     payload:any
 }
 
-interface wronganswers {
+interface wronganswer {
     type:'WRONGANS',
     payload:any
 }
@@ -27,13 +27,18 @@ interface answersID {
     payload:number
 }
 
-type action =  scoreaction |  rightanswers | wronganswers | answersID
+interface ans {
+    type:'ANS',
+    payload:any
+}
+type action =  scoreaction |  rightanswer | wronganswer | answersID |ans
 
 const InitialValue = {
     score: 0,
     rightans:[],
     wrongans:[],
-    ansID:[]
+    ansID:[],
+    answers:[]
 }
 
 const reducer = (state: initialValue = InitialValue, action: action) => {
@@ -42,51 +47,45 @@ const reducer = (state: initialValue = InitialValue, action: action) => {
     switch (action.type) {
         
         case 'SCORE':
-            newState.score = newState.rightans.length
+           if(newState.score <= 6){
+            newState.score = newState.score+1
+           }
             break;
         
         case 'ANSWER':
-           if(newState.rightans.length < 1){
             newState.rightans = [...newState.rightans, action.payload]
-           }else {
-            let flag = true
-            newState.rightans.forEach((item:any)=>{
-                if(item.currentAns === action.payload.currentAns){
-                    flag = false
-                }
-            })
-            if(flag){
-                newState.rightans = [...newState.rightans, action.payload]
-            }
-           }
-                // if(!newState.rightans.includes(action.payload)){
-                //     newState.rightans = [...newState.rightans, action.payload]
-                // }     
-           
              break;
+             
         case 'WRONGANS':
-          
-            if(newState.wrongans.length < 1){
-                newState.wrongans = [...newState.wrongans, action.payload]
-               }else {
-                let flag = true
-                newState.wrongans.forEach((item:any)=>{
-                    if(item.currentAns === action.payload.currentAns){
-                        flag = false
-                    }
-                })
-                if(flag){
-                    newState.wrongans = [...newState.wrongans, action.payload]
-                }
-               }
-            
+            console.log('wrong call')
+            console.log(action.payload)
+            newState.wrongans = [...newState.wrongans, action.payload]
             break;
+
         case 'ID':
             if(!newState.ansID.includes(action.payload)){
                 newState.ansID = [...newState.ansID, action.payload]
             }
-            
             break;
+
+        case 'ANS':
+            if(newState.answers.length < 1){
+                newState.answers = [...newState.answers, action.payload]
+            }else {
+                let flag = true
+                newState.answers.forEach((item:any)=>{
+                    if(item.queId === action.payload.queId){
+                        flag = false
+                        item.ans = action.payload.ans
+                    }
+                })
+                if(flag){
+                    newState.answers = [...newState.answers, action.payload]
+                }
+            }
+
+            break;
+
         default:
             break;
     }

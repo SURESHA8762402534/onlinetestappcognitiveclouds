@@ -6,10 +6,8 @@ import Qu5 from '../questions/Qu5'
 
 type Props = {
   item: any;
-  currPage: number;
+  currPage: any;
   data: any;
-  // handleQueAttempt: any;
-  // handleFinishTest: any;
   prevQue: any;
   nextQue: any;
 };
@@ -24,8 +22,7 @@ const Question: React.FC<Props> = ({ ...props }) => {
           data={props.data}
           prevQue={props.prevQue}
           nextQue={props.nextQue}
-          // handleQueAttempt={props.handleQueAttempt}
-          // handleFinishTest={props.handleFinishTest}
+          
         />
       );
     case "boolean":
@@ -36,8 +33,7 @@ const Question: React.FC<Props> = ({ ...props }) => {
           data={props.data}
           prevQue={props.prevQue}
           nextQue={props.nextQue}
-          // handleQueAttempt={props.handleQueAttempt}
-          // handleFinishTest={props.handleFinishTest}
+          
         />
       );
     case "fill-up":
@@ -48,8 +44,7 @@ const Question: React.FC<Props> = ({ ...props }) => {
           data={props.data}
           prevQue={props.prevQue}
           nextQue={props.nextQue}
-          // handleQueAttempt={props.handleQueAttempt}
-          // handleFinishTest={props.handleFinishTest}
+          
         />
       );
     case "multi-select":
@@ -60,8 +55,7 @@ const Question: React.FC<Props> = ({ ...props }) => {
           data={props.data}
           prevQue={props.prevQue}
           nextQue={props.nextQue}
-          // handleQueAttempt={props.handleQueAttempt}
-          // handleFinishTest={props.handleFinishTest}
+          
         />
       );
     case "match-up":
@@ -72,8 +66,7 @@ const Question: React.FC<Props> = ({ ...props }) => {
           data={props.data}
           prevQue={props.prevQue}
           nextQue={props.nextQue}
-          // handleQueAttempt={props.handleQueAttempt}
-          // handleFinishTest={props.handleFinishTest}
+         
         />
       );
     default: {

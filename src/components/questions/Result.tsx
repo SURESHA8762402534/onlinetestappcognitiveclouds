@@ -1,71 +1,53 @@
-// import { PieChart } from 'react-minimal-pie-chart';
-import { Button } from '@mui/material';
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import { initialValue } from '../../reducer/reducer';
+import Results from '../Result/Results';
 
 
 
 const Result = () => {
-  const RIGHTANSWER = useSelector<initialValue, initialValue['rightans']>(state => state.rightans)
-  const WRONGANSWER = useSelector<initialValue, initialValue['wrongans']>(state => state.wrongans)
-  const scores = useSelector<initialValue, initialValue['score']>(state => state.score)
-  const navigate = useNavigate()
+  const ANSWER:any = useSelector<initialValue, initialValue['answers']>(state => state.answers)
+  
+  const dispatch = useDispatch()
+  const questions:any = useLocation().state;
 
-  const start = scores * 60
-
-  const mystyle = {
-    height: '20rem',
-    width: '20rem',
-    backgroundColor: "red",
-    backgroundImage: `conic-gradient(green 0deg, green ${start}deg,  red ${start}deg, red 360deg)`,
-    borderRadius: "50%"
-
+  
+  const rightAns = ()=>{
+    for(let i =0 ; i< ANSWER.length; i++){
+      for(let j = 0; j<questions.length; j++){
+        if( ANSWER[i].queId === questions[j].id){
+          if(questions[j].type !== "multi-select"){
+            if(ANSWER[i].ans === questions[j].answer){
+              dispatch({type:'SCORE'})
+              dispatch({type:'ANSWER', payload:questions[j]})
+            }
+            else {
+             dispatch({ type: 'WRONGANS', payload: {ID:questions[j].id, QUE:questions[j].questionText, ANS:ANSWER[i].ans}})
+            }
+          }else {
+            ANSWER[i].ans.forEach((item:any)=>{
+              if(questions[j].answer.includes(item)){
+                dispatch({type:'SCORE'})
+                dispatch({type:'ANSWER', payload:questions[j]})
+              }else{
+               dispatch({ type: 'WRONGANS', payload: {ID:questions[j].id, QUE:questions[j].questionText, ANS:ANSWER[i].ans}})
+              }
+            })
+          }
+        }
+      }
+    } 
   }
+
+useEffect(()=>{
+  rightAns()
+  // console.log('function called')
+},[])
 
   return (
     <div >
-      
-      <div style={{ marginLeft: 50, float: 'left' }}>
-      <Button variant='contained' sx={{ml:2,mt:2, mb:1}} onClick={()=>{navigate('/enterpage')}}>Retake</Button>
-        <h1 style={{ marginBottom: '40px' }}>Your score is <b>{scores}/6</b></h1>
-
-        <h3><u>RIGHT_ANSWERS</u></h3>
-      <ol style={{listStyleType: 'none'}}>
-       {RIGHTANSWER.map((item:any) => {
-          return (
-            <li style={{ color: 'green', marginBottom: '10px' }}> <span style={{color:'black', marginRight:'10px'}}>Q{item.id}. {item.que} :--</span> <br /> {item.currentAns} </li>
-          )
-        })}
-       </ol>
-
-        <h3 style={{ marginTop: '40px' }}><u>WRONG_ANSWERS</u></h3>
-        <ol style={{listStyleType: 'none'}}>
-        {WRONGANSWER.map((item:any) => {
-          return (
-            <li style={{ color: 'red', marginBottom: '10px' }}><span style={{color:'black', marginRight:'10px'}}>Q{item.id}. {item.que} :--</span><br /> {item.currentAns} </li>
-          )
-        })}
-        </ol>
-      </div>
-
-      <div style={{ float: 'right', marginRight: '10rem', marginTop: '5rem' }}>
-      <div style={mystyle}></div>
-        {/* <PieChart
-          data={[
-            { title: 'total', value: 6 - scores, color: 'red', totalValue: 6 },
-            { title: 'your score', value: scores, color: 'green', totalValue: 6 }
-
-          ]}
-          radius={50}
-
-        />; */}
-
-        
-
-      </div>
-
-
+      <Results />
     </div>
   )
 }

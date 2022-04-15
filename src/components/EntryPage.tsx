@@ -17,10 +17,7 @@ const EntryPage: React.FC<Props> = ({ ...props }) => {
     setLanguage(event.target.value);
   };
   const submit = () => {
-    // console.log(language);
-    if (language === 'Reactjs') {
       navigate('/quiz')
-    }
     props.setLanguage(language)
   }
   return (
@@ -105,12 +102,14 @@ const EntryPage: React.FC<Props> = ({ ...props }) => {
                   onChange={handleChange}
                   defaultValue='Select'
                 >
-                  <MenuItem value='Reactjs'>React js</MenuItem>
+                  <MenuItem value='English'>English</MenuItem>
+                  <MenuItem value='Hindi'>Hindi</MenuItem>
+                  <MenuItem value='Kannada'>Kannada</MenuItem>
                   
                    </Select>
               </TableCell>
               <TableCell>
-                <Button sx={{ width: 200, ml: 5 }} style={{ backgroundColor: 'rgb(18, 114, 209)', color: 'white' }} variant='outlined' onClick={submit}>Start Test</Button>
+                <Button title='startTest' sx={{ width: 200, ml: 5 }} style={{ backgroundColor: 'rgb(18, 114, 209)', color: 'white' }} variant='outlined' onClick={submit}>Start Test</Button>
               </TableCell>
             </TableRow>
           </Table>
