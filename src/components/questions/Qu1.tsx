@@ -4,7 +4,8 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { useNavigate } from 'react-router-dom';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { initialValue } from '../../reducer/reducer';
 
 type Props = {
     queObj: any;
@@ -18,6 +19,7 @@ type Props = {
 const Qu1: React.FC<Props> = ({ ...props }) => {
 
     const [currentAns, setAns] = useState<string>('');
+    const [showAns, setShowAns] = useState<string>('')
 
     const dispatch = useDispatch()
     const navigate = useNavigate();
@@ -28,11 +30,11 @@ const Qu1: React.FC<Props> = ({ ...props }) => {
 
     };
 
+    const correctAns = useSelector<initialValue, initialValue['answers']> (state => state.answers)
+
     const goto = () => {
         navigate('/result')
         dispatch({ type: 'SCORE' })
-        console.log(props.queObj)
-
     }
 
     const save =()=>{}
@@ -43,6 +45,14 @@ const Qu1: React.FC<Props> = ({ ...props }) => {
             dispatch({type:'ID', payload:props.currPage+1})
         }  
        
+    },[currentAns])
+
+    useEffect(()=>{
+        correctAns.forEach((item:any)=>{
+            if(item.queId === props.data.id){
+                setShowAns(item.ans)
+            }
+        })
     },[currentAns])
 
     return (
@@ -86,6 +96,9 @@ const Qu1: React.FC<Props> = ({ ...props }) => {
                         ))}
 
                     </RadioGroup>
+                    <br />
+
+                    Your answer :- " {showAns ? showAns : null} "
 
 
                 </Grid>
@@ -93,7 +106,7 @@ const Qu1: React.FC<Props> = ({ ...props }) => {
 
 
                 <Grid container sx={{ m: 8 }}>
-          <Grid item xs={2}><Button onClick={props.prevQue} variant='outlined' disabled={props.currPage <= 0}><ArrowBackIcon /></Button>  </Grid>
+          <Grid item xs={2}><Button onClick={props.prevQue} variant='outlined' disabled={props.currPage <= 0}><ArrowBackIcon/></Button>  </Grid>
           <Grid item xs={6}></Grid>
           <Grid item xs={1}><Button disabled={props.data.type !== "multi-select"} variant='outlined' onClick={save} >Save</Button></Grid>
           <Grid item xs={1}><Button disabled={props.currPage < props.queObj.length - 1} variant='outlined' onClick={goto} >Submit</Button></Grid>

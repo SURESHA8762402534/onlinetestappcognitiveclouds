@@ -9,7 +9,8 @@ export interface initialValue {
 
 
 interface scoreaction {
-    type: 'SCORE'
+    type: 'SCORE',
+    payload:any
 }
 
 interface rightanswer {
@@ -47,7 +48,8 @@ const reducer = (state: initialValue = InitialValue, action: action) => {
     switch (action.type) {
         
         case 'SCORE':
-           if(newState.score <= 6){
+            console.log(action.payload)
+           if(newState.score < 6){
             newState.score = newState.score+1
            }
             break;

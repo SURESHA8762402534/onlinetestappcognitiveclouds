@@ -33,7 +33,7 @@ const Results = () => {
       <ol style={{listStyleType: 'none'}}>
        {RIGHTANSWER.map((item:any) => {
           return (
-            <li style={{ color: 'green', marginBottom: '10px' }}> <span style={{color:'black', marginRight:'10px'}}>Q{item.id}. {item.questionText} </span> <br /> &rarr;  {item.answer} </li>
+            <li style={{ color: 'green', marginBottom: '10px' }}> <span style={{color:'black', marginRight:'10px'}}>Q{item.ID}. {item.QUE} </span> <br /> &rarr;  "{item.ANS}"  </li>
           )
         })}
        </ol>
@@ -42,7 +42,7 @@ const Results = () => {
         <ol style={{listStyleType: 'none'}}>
         {WRONGANSWER.map((item:any) => {
           return (
-            <li style={{ color: 'red', marginBottom: '10px' }}><span style={{color:'black', marginRight:'10px'}}>Q{item.ID}. {item.QUE}  </span><br /> &rarr; {item.ANS} </li>
+            <li style={{ color: 'red', marginBottom: '10px' }}><span style={{color:'black', marginRight:'10px'}}>Q{item.ID}. {item.QUE}  </span><br /> &rarr; "{item.ANS}"  </li>
           )
         })}
         </ol>

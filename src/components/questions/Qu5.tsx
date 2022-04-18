@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Grid, Typography, Button, RadioGroup, FormControlLabel, Checkbox, } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { initialValue } from '../../reducer/reducer';
 
 
 type Props = {
@@ -18,9 +19,11 @@ type Props = {
 const Qu5: React.FC<Props> = ({ ...props }) => {
 
   const [currentAns, setAns] = useState<string[]>([])
+  const [showAns, setShowAns] = useState<string[]>([])
+  const [num, setNum] = useState<string[]>([])
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  const correctAns = useSelector<initialValue, initialValue['answers']> (state => state.answers)
   const handleAnswerOptionClick = (e: any) => {
     if(!currentAns.includes(e.target.value)){
       if (currentAns.length < 2) {
@@ -45,6 +48,23 @@ const Qu5: React.FC<Props> = ({ ...props }) => {
       dispatch({type:'ID', payload:props.currPage+1})
   }
   }
+
+  useEffect(()=>{
+    correctAns.forEach((item:any)=>{
+      setNum(item.ans)
+    })
+  },[currentAns])
+
+  useEffect(()=>{
+    correctAns.forEach((item:any)=>{
+        if(item.queId === props.data.id){
+          setShowAns(item.ans)
+        }
+    })
+    console.log('call func');
+    console.log(showAns);
+
+},[num])
 
   return (
     <>
@@ -72,6 +92,13 @@ const Qu5: React.FC<Props> = ({ ...props }) => {
             ))}
 
           </RadioGroup>
+          <br />
+
+          Your answer :-  {showAns.map(item=>{
+            return (
+              <span>"{item}", </span>
+            )
+          })} 
 
         </Grid>
 

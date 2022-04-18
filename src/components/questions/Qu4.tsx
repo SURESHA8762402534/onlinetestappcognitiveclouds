@@ -3,7 +3,9 @@ import { Grid, Typography, Radio, RadioGroup, Button, FormControlLabel } from '@
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { initialValue } from '../../reducer/reducer';
+
 
 type Props = {
   queObj: any;
@@ -17,10 +19,10 @@ type Props = {
 const Qu4: React.FC<Props> = ({ ...props }) => {
 
   const [currentAns, setAns] = useState<string>('')
-
+  const [showAns, setShowAns] = useState<string>('')
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const correctAns = useSelector<initialValue, initialValue['answers']> (state => state.answers)
 
   const handleAnswerOptionClick = (e: any) => {
     setAns(e.target.value)
@@ -33,6 +35,7 @@ const Qu4: React.FC<Props> = ({ ...props }) => {
     dispatch({ type: 'SCORE' })
 
   }
+  
 const save = ()=>{}
 
   useEffect(() => {
@@ -40,6 +43,14 @@ const save = ()=>{}
       dispatch({type:'ANS', payload:{queId:props.data.id, ans:currentAns}})
       dispatch({type:'ID', payload:props.currPage+1})
   }
+},[currentAns])
+
+useEffect(()=>{
+  correctAns.forEach((item:any)=>{
+      if(item.queId === props.data.id){
+          setShowAns(item.ans)
+      }
+  })
 },[currentAns])
 
   return (
@@ -77,6 +88,9 @@ const save = ()=>{}
             ))}
 
           </RadioGroup>
+          <br />
+
+          Your answer :- " {showAns ? showAns : null} "
 
         </Grid>
 

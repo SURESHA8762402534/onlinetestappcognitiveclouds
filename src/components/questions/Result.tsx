@@ -19,8 +19,11 @@ const Result = () => {
         if( ANSWER[i].queId === questions[j].id){
           if(questions[j].type !== "multi-select"){
             if(ANSWER[i].ans === questions[j].answer){
-              dispatch({type:'SCORE'})
-              dispatch({type:'ANSWER', payload:questions[j]})
+              console.log(questions[j].id)
+                console.log(questions[j].questionText)
+                console.log(ANSWER[i].ans);
+              dispatch({type:'SCORE', payload:{ID:ANSWER[i]}})
+              dispatch({type:'ANSWER', payload:{ID:questions[j].id, QUE:questions[j].questionText, ANS:ANSWER[i].ans}})
             }
             else {
              dispatch({ type: 'WRONGANS', payload: {ID:questions[j].id, QUE:questions[j].questionText, ANS:ANSWER[i].ans}})
@@ -28,10 +31,13 @@ const Result = () => {
           }else {
             ANSWER[i].ans.forEach((item:any)=>{
               if(questions[j].answer.includes(item)){
+                console.log(questions[j].id)
+                console.log(questions[j].questionText)
+                console.log(item);
                 dispatch({type:'SCORE'})
-                dispatch({type:'ANSWER', payload:questions[j]})
+                dispatch({type:'ANSWER', payload:{ID:questions[j].id, QUE:questions[j].questionText, ANS:item}})
               }else{
-               dispatch({ type: 'WRONGANS', payload: {ID:questions[j].id, QUE:questions[j].questionText, ANS:ANSWER[i].ans}})
+               dispatch({ type: 'WRONGANS', payload: {ID:questions[j].id, QUE:questions[j].questionText, ANS:item}})
               }
             })
           }

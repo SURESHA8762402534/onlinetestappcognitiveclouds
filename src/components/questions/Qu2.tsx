@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Grid, Typography, Button } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { initialValue } from '../../reducer/reducer';
 
 type Props = {
   queObj: any;
@@ -17,10 +18,9 @@ type Props = {
 const Qu2: React.FC<Props> = ({ ...props }) => {
 
   const dispatch = useDispatch()
-  const [flag, setflag] = useState<boolean>(false)
-
+  const [showAns, setShowAns] = useState<string>('')
   const [currentAns, setCurrentAns] = useState<string>('')
-
+  const correctAns = useSelector<initialValue, initialValue['answers']> (state => state.answers)
   const navigate = useNavigate();
   const handelChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCurrentAns(e.target.value)
@@ -33,13 +33,20 @@ const Qu2: React.FC<Props> = ({ ...props }) => {
   }
 
   const save = () => {
-    setflag(true)
     if(currentAns !== ''){
       dispatch({type:'ANS', payload:{queId:props.data.id, ans:currentAns}})
       dispatch({type:'ID', payload:props.currPage+1})
   }
     
   }
+
+  useEffect(()=>{
+    correctAns.forEach((item:any)=>{
+        if(item.queId === props.data.id){
+            setShowAns(item.ans)
+        }
+    })
+},[currentAns])
 
 
   return (
@@ -66,7 +73,8 @@ const Qu2: React.FC<Props> = ({ ...props }) => {
               style={{ height: '2.5rem', width: '15rem', margin: '10px' }}
             />
             <Button variant='outlined' onClick={save} style={{ backgroundColor: 'grey', marginRight: 20, color: 'blue' }}>Save</Button>
-            {flag ? <h5>{currentAns}</h5> : null}
+            <br />
+            Your answer :- " {showAns ? showAns : null} "
 
           </form>
 
