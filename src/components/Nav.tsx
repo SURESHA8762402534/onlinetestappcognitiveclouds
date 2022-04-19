@@ -10,9 +10,9 @@ const Nav = () => {
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1, ml:80 }}>
                         Online Mocktest
                     </Typography>
-                    {/* <Typography variant="h6" component="div" sx={{ flexGrow: 0, mr:8 }}>
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 0, mr:8 }}>
                         <Link style={{ textDecoration: 'none', color:'white' }} to='/login'>Login</Link>
-                    </Typography> */}
+                    </Typography>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 0 }}>
                         <Link style={{ textDecoration: 'none', color:'white' }} to='/signup'>Sign Up</Link>
                     </Typography>

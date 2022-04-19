@@ -16,7 +16,7 @@ const Pagination: React.FC<Props> = ({ ...props }) => {
   const ansID = useSelector<initialValue, initialValue['ansID']> (state => state.ansID)
 
   return (
-    <div className="pagination-wrapper">
+    <div >
       {props.data.map((item: any, idx:any) => {
         return (
           <Button
