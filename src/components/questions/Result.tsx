@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { initialValue } from '../../reducer/reducer';
@@ -19,10 +19,7 @@ const Result = () => {
         if( ANSWER[i].queId === questions[j].id){
           if(questions[j].type !== "multi-select"){
             if(ANSWER[i].ans === questions[j].answer){
-              console.log(questions[j].id)
-                console.log(questions[j].questionText)
-                console.log(ANSWER[i].ans);
-              dispatch({type:'SCORE', payload:{ID:ANSWER[i]}})
+              dispatch({type:'SCORE'})
               dispatch({type:'ANSWER', payload:{ID:questions[j].id, QUE:questions[j].questionText, ANS:ANSWER[i].ans}})
             }
             else {
@@ -31,9 +28,6 @@ const Result = () => {
           }else {
             ANSWER[i].ans.forEach((item:any)=>{
               if(questions[j].answer.includes(item)){
-                console.log(questions[j].id)
-                console.log(questions[j].questionText)
-                console.log(item);
                 dispatch({type:'SCORE'})
                 dispatch({type:'ANSWER', payload:{ID:questions[j].id, QUE:questions[j].questionText, ANS:item}})
               }else{
@@ -46,8 +40,10 @@ const Result = () => {
     } 
   }
 
+  
 useEffect(()=>{
   rightAns()
+  console.log('answer called')
   // console.log('function called')
 },[])
 

@@ -20,6 +20,16 @@ Object {
               Online Mocktest
             </div>
             <div
+              class="MuiTypography-root MuiTypography-h6 css-2ofoyk-MuiTypography-root"
+            >
+              <a
+                href="/login"
+                style="text-decoration: none; color: white;"
+              >
+                Login
+              </a>
+            </div>
+            <div
               class="MuiTypography-root MuiTypography-h6 css-7fum8j-MuiTypography-root"
             >
               <a
@@ -48,6 +58,16 @@ Object {
             class="MuiTypography-root MuiTypography-h6 css-1cx6i83-MuiTypography-root"
           >
             Online Mocktest
+          </div>
+          <div
+            class="MuiTypography-root MuiTypography-h6 css-2ofoyk-MuiTypography-root"
+          >
+            <a
+              href="/login"
+              style="text-decoration: none; color: white;"
+            >
+              Login
+            </a>
           </div>
           <div
             class="MuiTypography-root MuiTypography-h6 css-7fum8j-MuiTypography-root"
